@@ -2,9 +2,26 @@
 
 Guidance for AI assistants (Claude Code and others) working in this repository.
 
-## Repository status
+## Project overview
 
-This repository is currently **empty** — no source files, no commits on the default branch, no build configuration. This document is a placeholder scaffold; expand each section below as real code is added.
+A small Python sandbox for controlling a **DJI RoboMaster S1** from a PC over Wi-Fi (S1 joined to the same router as the PC, i.e. station mode). Uses DJI's official `robomaster` Python package.
+
+## Layout
+
+- `hello_s1.py` — minimal connect → drive forward 0.5 m → disconnect demo.
+- `requirements.txt` — Python dependencies (`robomaster`).
+- `.gitignore` — Python venv / cache exclusions.
+
+## Setup and run
+
+```
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python hello_s1.py
+```
+
+Before running: power on the S1, ensure it is connected to the same Wi-Fi network as the PC, and leave at least 1 m of clear space in front of it.
 
 ## Remote
 
