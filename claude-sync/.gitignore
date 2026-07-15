@@ -1,0 +1,39 @@
+# =========================================================================
+# claude-sync .gitignore — deny-by-default 設計
+#
+# 方針: claude/ 以下は「明示的に許可したものだけ」を同期する。
+# 新しいファイル種別が ~/.claude に増えても、許可リストに足さない限り
+# 誤って secrets がコミットされることはない。
+# =========================================================================
+
+# --- deny by default: claude/ 直下は全部無視 ---
+/claude/*
+
+# --- allow: ユーザーグローバルメモリ ---
+!/claude/CLAUDE.md
+
+# --- allow: プロジェクトごとの auto memory のみ ---
+# claude/projects/<正規プロジェクト名>/memory/ 以下だけを追跡する。
+# セッション履歴 (*.jsonl) など memory 以外は追跡されない。
+!/claude/projects/
+/claude/projects/*
+!/claude/projects/*/
+/claude/projects/*/*
+!/claude/projects/*/memory/
+
+# =========================================================================
+# 二重ガード: 上の許可リストが将来緩んでも、以下は絶対に入れない。
+# (memory/ の中に紛れ込んだ場合もブロックされる)
+# =========================================================================
+settings.json
+settings.local.json
+launcher-settings.json
+.credentials.json
+credentials.json
+*.pem
+*.key
+*.p12
+.env
+.env.*
+*.bak-*
+memory.bak-*
